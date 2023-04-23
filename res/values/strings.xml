@@ -747,4 +747,11 @@
 
     <!-- Running services - Background processes tab -->
     <string name="background_processes_settings_title">Background processes</string>
+
+    <!-- Prevent pointer accleration -->
+    <string name="prevent_pointer_acceleration_title">Pointer acceleration</string>
+    <string name="prevent_pointer_acceleration_full">Full (Pointer + Wheel)</string>
+    <string name="prevent_pointer_acceleration_wheel">Wheel only</string>
+    <string name="prevent_pointer_acceleration_pointer">Pointer only</string>
+    <string name="prevent_pointer_acceleration_none">None</string>
 </resources>
