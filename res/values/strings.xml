@@ -754,4 +754,9 @@
     <string name="prevent_pointer_acceleration_wheel">Wheel only</string>
     <string name="prevent_pointer_acceleration_pointer">Pointer only</string>
     <string name="prevent_pointer_acceleration_none">None</string>
+
+    <!-- Factory reset battery low dialog -->
+    <string name="factory_reset_battery_low_dialog_title">Battery low</string>
+    <string name="factory_reset_battery_low_dialog_message">To perform a factory reset, the battery level must be at least 15%.\n\nPlease connect your charger to continue.</string>
+    <string name="factory_reset_battery_low_dialog_button_text">Got it</string>
 </resources>
