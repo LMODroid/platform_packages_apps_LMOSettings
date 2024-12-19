@@ -67,4 +67,7 @@
 
     <!-- Show battery maximum capacity -->
     <bool name="config_show_battery_maximum_capacity" translatable="false">true</bool>
+
+    <!-- Whether to show Face unlock attention toggle in Face Unlock Settings -->
+    <bool name="config_show_face_unlock_attention_switch">true</bool>
 </resources>
