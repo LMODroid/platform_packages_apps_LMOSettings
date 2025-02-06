@@ -759,4 +759,9 @@
     <string name="factory_reset_battery_low_dialog_title">Battery low</string>
     <string name="factory_reset_battery_low_dialog_message">To perform a factory reset, the battery level must be at least 15%.\n\nPlease connect your charger to continue.</string>
     <string name="factory_reset_battery_low_dialog_button_text">Got it</string>
+
+    <!-- Doze always-on display -->
+    <string name="doze_always_on_main_switch_title">Always-on display</string>
+    <string name="doze_always_on_timeout_switch_title">Timeout after 15s</string>
+    <string name="doze_always_on_timeout_switch_summary">Turns off Always-On Display after 15 seconds of inactivity to save power</string>
 </resources>
