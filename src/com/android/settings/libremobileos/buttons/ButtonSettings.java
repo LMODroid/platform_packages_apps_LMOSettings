@@ -474,7 +474,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
                 mEnableTaskbar.setChecked(Settings.System.getInt(resolver,
                         LMOSettings.System.ENABLE_TASKBAR,
                         isLargeScreen(requireContext()) ? 1 : 0) == 1);
-                toggleTaskBarDependencies(mEnableTaskbar.isChecked());
             }
         }
 
@@ -665,7 +664,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
             mHardware.set(LineageHardwareManager.FEATURE_KEY_SWAP, (Boolean) newValue);
             return true;
         } else if (preference == mEnableTaskbar) {
-            toggleTaskBarDependencies((Boolean) newValue);
             final boolean is3ButtonOnPhone = !isLargeScreen(requireContext())
                     && is3ButtonNavigationEnabled(requireContext());
             if ((Boolean) newValue && is3ButtonOnPhone) {
@@ -698,15 +696,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
-    }
-
-    private void toggleTaskBarDependencies(boolean enabled) {
-        enablePreference(mNavigationArrowKeys, !enabled);
-        enablePreference(mNavBarInverse, !enabled);
-        enablePreference(mNavigationBackLongPressAction, !enabled);
-        enablePreference(mNavigationHomeLongPressAction, !enabled);
-        enablePreference(mNavigationHomeDoubleTapAction, !enabled);
-        enablePreference(mNavigationAppSwitchLongPressAction, !enabled);
     }
 
     private void enablePreference(Preference pref, boolean enabled) {
