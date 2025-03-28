@@ -226,8 +226,6 @@
     <string name="navigation_bar_invert_layout_title">برعکس کردن طرح بندی</string>
     <string name="navigation_bar_invert_layout_summary">برعکس کردن طرح بندی نوار ناوبری و موارد دیگر، مانند تغییر کننده IME</string>
     <string name="navigation_bar_left_summary">قرار دادن نوار ناوبری در سمت چپ صفحه در حالت افقی</string>
-    <string name="navigation_bar_arrow_keys_title">نمایش کلیدهای جهت‌دهی در حال تایپ</string>
-    <string name="navigation_bar_arrow_keys_summary">نمایش دکمه‌های جهت‌دهی چپ و راست در حال تایپ. تغییر کننده IME را رها می‌کند.</string>
     <string name="navigation_bar_back_long_press_title">عملکرد فشار طولانی دکمه بازگشت</string>
     <string name="navigation_bar_home_long_press_title">عملکرد فشار طولانی دکمه خانه</string>
     <string name="navigation_bar_home_double_tap_title">عملکرد دوبل تپ دکمه خانه</string>
