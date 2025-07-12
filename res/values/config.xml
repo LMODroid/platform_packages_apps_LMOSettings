@@ -61,4 +61,7 @@
 
     <!-- Show battery cycle count -->
     <bool name="config_show_battery_cycle_count" translatable="false">false</bool>
+
+    <!-- Maximum allowed screen timeout setting in milliseconds -->
+    <integer name="config_maximumScreenOffTimeout">-1</integer>
 </resources>
