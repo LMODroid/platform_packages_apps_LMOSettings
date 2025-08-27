@@ -905,6 +905,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
 
         @Override
         public List<String> getNonIndexableKeys(Context context) {
+            if (!isPageSearchEnabled(context)) {
+                return super.getNonIndexableKeys(context);
+            }
+
             final List<String> result = new ArrayList<>();
 
             if (!TelephonyUtils.isVoiceCapable(context)) {
