@@ -708,10 +708,6 @@
     <string name="old_mobiletype_title">نمایش آیکون سیگنال به سبک قدیمی</string>
     <string name="old_mobiletype_summary">ادغام آیکون سیگنال و نوع سیگنال</string>
 
-    <!-- Navbar -->
-    <string name="navbar_tuner_title">تنظیم‌کننده Navbar</string>
-    <string name="navbar_tuner_summary">سفارشی‌سازی طرح‌بندی نوار ناوبری خود را</string>
-
     <!-- Prevent pointer accleration -->
     <string name="prevent_pointer_acceleration_title">شتاب‌دهنده پوینتر</string>
     <string name="prevent_pointer_acceleration_full">کامل (پوینتر + چرخ)</string>
