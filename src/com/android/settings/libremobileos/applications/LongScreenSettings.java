@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,6 +34,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settingslib.applications.ApplicationsState;
 import com.google.android.material.materialswitch.MaterialSwitch;
@@ -187,6 +190,20 @@ public class LongScreenSettings extends SettingsPreferenceFragment
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.LMODROID;
+    }
+
+    @Override
+    public void setDivider(@Nullable final Drawable divider) {
+        RecyclerView list = getListView();
+        if (list == null) {
+            View root = getView();
+            if (root != null) {
+                root.post(() -> setDivider(divider));
+            }
+            return;
+        }
+
+        super.setDivider(divider);
     }
 
     private class AllPackagesAdapter extends BaseAdapter
