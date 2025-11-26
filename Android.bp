@@ -63,6 +63,5 @@ java_defaults {
         "kotlinx_coroutines_android",
         "SystemUISharedLib",
         "VendorSupport-preference",
-        "vendor.lineage.fastcharge-V1.0-java",
     ],
 }
