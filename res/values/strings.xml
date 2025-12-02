@@ -203,8 +203,8 @@
     <string name="torch_long_press_power_timeout_10min">10 minutes</string>
 
     <!-- Double tap to sleep on status bar or lockscreen -->
-    <string name="status_bar_double_tap_to_sleep_lockscreen_title">Tap to sleep</string>
-    <string name="status_bar_double_tap_to_sleep_lockscreen_summary">Double-tap on the status bar or lockscreen to turn off the display</string>
+    <string name="status_bar_double_tap_to_sleep_title">Tap to sleep</string>
+    <string name="status_bar_double_tap_to_sleep_summary">Double-tap on the status bar or lockscreen to turn off the display</string>
 
     <!-- Fingerprint enroll -->
     <!-- Message shown in fingerprint enrollment dialog to locate the sensor -->
@@ -455,8 +455,6 @@
     <string name="status_bar_quick_qs_pulldown_off">Off</string>
     <string name="status_bar_quick_qs_pulldown_left">Left</string>
     <string name="status_bar_quick_qs_pulldown_right">Right</string>
-    <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
-    <string name="status_bar_double_tap_to_sleep_summary">Double-tap on the status bar to turn off the display</string>
 
     <!-- Status bar - icons -->
     <string name="status_bar_icons_title">Status bar icons</string>
