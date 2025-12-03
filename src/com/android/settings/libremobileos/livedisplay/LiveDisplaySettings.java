@@ -1,18 +1,7 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2021 The LineageOS Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-FileCopyrightText: 2015 The CyanogenMod Project
+ * SPDX-FileCopyrightText: 2017-2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 package com.android.settings.libremobileos.livedisplay;
@@ -46,6 +35,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
+import com.android.settings.libremobileos.utils.GenericUtils;
 import com.android.settings.libremobileos.utils.ResourceUtils;
 import com.android.settingslib.widget.LayoutPreference;
 
@@ -580,6 +570,12 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.LMODROID;
+    }
+    
+    public static void restoreLiveDisplay(Context context) {
+        GenericUtils.setComponentEnabled(context, LiveDisplaySettings.class.getName(),
+                context.getResources().getBoolean(
+                        com.android.internal.R.bool.config_enableLiveDisplay));
     }
 
     @Override
