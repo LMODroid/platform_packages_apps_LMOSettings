@@ -64,4 +64,7 @@
 
     <!-- Maximum allowed screen timeout setting in milliseconds -->
     <integer name="config_maximumScreenOffTimeout">-1</integer>
+
+    <!-- Show battery maximum capacity -->
+    <bool name="config_show_battery_maximum_capacity" translatable="false">true</bool>
 </resources>
