@@ -82,7 +82,7 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private static final String KEY_APP_SWITCH_WAKE_SCREEN = "app_switch_wake_screen";
     private static final String KEY_VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
     private static final String KEY_SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
-    private static final String KEY_VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
+    private static final String KEY_VOLUME_PANEL_POSITION = "volume_panel_on_left";
     private static final String KEY_VOLUME_WAKE_SCREEN = "volume_wake_screen";
     private static final String KEY_VOLUME_ANSWER_CALL = "volume_answer_call";
     private static final String KEY_DISABLE_NAV_KEYS = "disable_nav_keys";
@@ -130,7 +130,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private SwitchPreferenceCompat mCameraSleepOnRelease;
     private ListPreference mVolumeKeyCursorControl;
     private SwitchPreferenceCompat mSwapVolumeButtons;
-    private SwitchPreferenceCompat mVolumePanelOnLeft;
     private SwitchPreferenceCompat mDisableNavigationKeys;
     private ListPreference mNavigationBackLongPressAction;
     private ListPreference mNavigationHomeLongPressAction;
@@ -406,13 +405,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
             mSwapVolumeButtons = prefScreen.findPreference(KEY_SWAP_VOLUME_BUTTONS);
             if (mSwapVolumeButtons != null) {
                 mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
-            }
-
-            final boolean volumePanelOnLeft = Settings.Secure.getIntForUser(resolver,
-                    LMOSettings.Secure.VOLUME_PANEL_ON_LEFT, 0, UserHandle.USER_CURRENT) != 0;
-            mVolumePanelOnLeft = prefScreen.findPreference(KEY_VOLUME_PANEL_ON_LEFT);
-            if (mVolumePanelOnLeft != null) {
-                mVolumePanelOnLeft.setChecked(volumePanelOnLeft);
             }
         } else {
             extrasCategory.removePreference(findPreference(KEY_CLICK_PARTIAL_SCREENSHOT));
@@ -844,11 +836,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
             }
             Settings.System.putInt(requireActivity().getContentResolver(),
                     LMOSettings.System.SWAP_VOLUME_KEYS_ON_ROTATION, value);
-        } else if (preference == mVolumePanelOnLeft) {
-            Settings.Secure.putIntForUser(requireActivity().getContentResolver(),
-                    LMOSettings.Secure.VOLUME_PANEL_ON_LEFT,
-                    mVolumePanelOnLeft.isChecked() ? 1 : 0, UserHandle.USER_CURRENT);
-            return true;
         } else if (preference == mDisableNavigationKeys) {
             mDisableNavigationKeys.setEnabled(false);
             mNavigationPreferencesCat.setEnabled(false);
@@ -972,7 +959,7 @@ public class ButtonSettings extends SettingsPreferenceFragment
                 result.add(KEY_VOLUME_ANSWER_CALL);
                 result.add(KEY_VOLUME_KEY_CURSOR_CONTROL);
                 result.add(KEY_VOLUME_MUSIC_CONTROLS);
-                result.add(KEY_VOLUME_PANEL_ON_LEFT);
+                result.add(KEY_VOLUME_PANEL_POSITION);
                 result.add(KEY_VOLUME_WAKE_SCREEN);
                 result.add(KEY_CLICK_PARTIAL_SCREENSHOT);
             } else if (!DeviceUtils.canWakeUsingVolumeKeys(context)) {
