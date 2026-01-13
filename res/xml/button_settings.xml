@@ -6,6 +6,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:settings="http://schemas.android.com/apk/res-auto"
         android:key="button_settings"
         android:title="@string/button_pref_title">
@@ -304,9 +305,9 @@
         <com.libremobileos.support.preferences.SecureSettingListPreference
             android:key="volume_panel_on_left"
             android:title="@string/volume_panel_position_title"
-            android:summary="%s"
             android:entries="@array/volume_panel_position_entries"
-            android:entryValues="@array/volume_panel_position_values" />
+            android:entryValues="@array/volume_panel_position_values"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -6,7 +6,8 @@
 -->
 
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
             android:key="power_menu_items"
@@ -65,11 +66,11 @@
         <com.libremobileos.support.preferences.SecureSettingListPreference
             android:key="power_menu_type"
             android:title="@string/power_menu_type_title"
-            android:summary="%s"
             android:dialogTitle="@string/power_menu_type_title"
             android:entries="@array/power_menu_type_entries"
             android:entryValues="@array/power_menu_type_values"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
