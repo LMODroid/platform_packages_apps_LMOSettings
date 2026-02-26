@@ -38,21 +38,9 @@ class AppLockPackageProtectionPC(
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy { AppLockManager.getInstance(context) }
-    private var isProtected = false
+    private var isProtected: Boolean =
+        appLockManager.packageData.any { it.packageName == packageName }
     private var preference: Preference? = null
-
-    init {
-        coroutineScope.launch {
-            isProtected = withContext(Dispatchers.Default) {
-                appLockManager.packageData.any {
-                    it.packageName == packageName
-                }
-            }
-            preference?.let {
-                updateState(it)
-            }
-        }
-    }
 
     override fun getAvailabilityStatus() = AVAILABLE
 

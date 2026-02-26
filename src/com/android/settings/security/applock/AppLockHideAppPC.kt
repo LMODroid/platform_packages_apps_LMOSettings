@@ -37,19 +37,9 @@ class AppLockHideAppPC(
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy { AppLockManager.getInstance(context) }
-    private var hideFromLauncher = AppLockManager.DEFAULT_HIDE_IN_LAUNCHER
+    private var hideFromLauncher: Boolean =
+        appLockManager.hiddenPackages.any { it == packageName }
     private var preference: Preference? = null
-
-    init {
-        coroutineScope.launch {
-            hideFromLauncher = withContext(Dispatchers.Default) {
-                appLockManager.hiddenPackages.any { it == packageName }
-            }
-            preference?.let {
-                updateState(it)
-            }
-        }
-    }
 
     override fun getAvailabilityStatus() = AVAILABLE
 

@@ -39,21 +39,10 @@ class AppLockNotificationRedactionPC(
     private val appLockManager by lazy {
         AppLockManager.getInstance(context)
     }
-    private var shouldRedactNotification = AppLockManager.DEFAULT_REDACT_NOTIFICATION
-    private var preference: Preference? = null
-
-    init {
-        coroutineScope.launch {
-            shouldRedactNotification = withContext(Dispatchers.Default) {
-                appLockManager.packageData.find {
+    private var shouldRedactNotification: Boolean = appLockManager.packageData.find {
                     it.packageName == packageName
                 }?.shouldRedactNotification == true
-            }
-            preference?.let {
-                updateState(it)
-            }
-        }
-    }
+    private var preference: Preference? = null
 
     override fun getAvailabilityStatus() = AVAILABLE
 
