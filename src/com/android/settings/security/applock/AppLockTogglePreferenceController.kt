@@ -18,8 +18,6 @@
 package com.android.settings.security.applock;
 
 import android.content.Context
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import androidx.preference.Preference
 import androidx.preference.PreferenceScreen
@@ -31,19 +29,10 @@ import com.android.settingslib.widget.MainSwitchPreference
 abstract class AppLockTogglePreferenceController(
     context: Context,
     key: String,
-) : TogglePreferenceController(context, key),
-    OnCheckedChangeListener {
+) : TogglePreferenceController(context, key) {
 
     override fun displayPreference(screen: PreferenceScreen) {
         super.displayPreference(screen)
-        val preference = screen.findPreference<Preference>(preferenceKey) ?: return
-        if (preference is MainSwitchPreference) {
-            preference.addOnSwitchChangeListener(this)
-        }
-    }
-
-    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-        setChecked(isChecked)
     }
 
     override fun getSliceHighlightMenuRes() = R.string.menu_key_security
