@@ -27,6 +27,8 @@ import com.android.settingslib.fuelgauge.BatteryUtils;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.libremobileos.providers.LMOSettings;
+import com.libremobileos.support.preferences.SecureSettingListPreference;
+import com.libremobileos.support.preferences.SecureSettingSwitchPreference;
 import com.libremobileos.support.preferences.SystemSettingListPreference;
 
 @SearchIndexable
@@ -37,6 +39,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment {
 
     private static final String ICON_BLACKLIST = "icon_blacklist";
 
+    private static final String QS_BRIGHTNESS_SLIDER_POSITION = "qs_brightness_slider_position";
+    private static final String QS_SHOW_AUTO_BRIGHTNESS = "qs_show_auto_brightness";
+    private static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
+
     private static final String STATUS_BAR_CLOCK_STYLE = "status_bar_clock";
     private static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
@@ -45,12 +51,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment {
 
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 2;
 
+    private static final int QS_BRIGHTNESS_SLIDER_HIDDEN = 0;
+
     private static final int PULLDOWN_DIR_NONE = 0;
     private static final int PULLDOWN_DIR_RIGHT = 1;
     private static final int PULLDOWN_DIR_LEFT = 2;
 
     private static final String NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
 
+    private SecureSettingListPreference mQsBrightnessSliderPosition;
+    private SecureSettingSwitchPreference mQsShowAutoBrightness;
     private SystemSettingListPreference mQuickPulldown;
     private SystemSettingListPreference mStatusBarClock;
     private SystemSettingListPreference mStatusBarAmPm;
@@ -85,6 +95,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment {
             mBatteryPresent = intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, true);
         }
         mStatusBarBatteryCategory = getPreferenceScreen().findPreference(CATEGORY_BATTERY);
+
+        mQsShowAutoBrightness = findPreference(QS_SHOW_AUTO_BRIGHTNESS);
+        mQsBrightnessSliderPosition = findPreference(QS_BRIGHTNESS_SLIDER_POSITION);
+        SecureSettingListPreference qsShowBrightnessSlider =
+                findPreference(QS_SHOW_BRIGHTNESS_SLIDER);
+        qsShowBrightnessSlider.setOnPreferenceChangeListener((preference, newValue) -> {
+            enableQuickSettingsBrightnessSliderDependents(Integer.parseInt((String) newValue));
+            return true;
+        });
+        enableQuickSettingsBrightnessSliderDependents(qsShowBrightnessSlider.getIntValue(1));
 
         mQuickPulldown = findPreference(STATUS_BAR_QUICK_QS_PULLDOWN);
         mQuickPulldown.setSummaryProvider(preference -> {
@@ -157,6 +177,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment {
             }
             mQuickPulldown.setEntries(R.array.status_bar_quick_qs_pulldown_entries);
         }
+    }
+
+    private void enableQuickSettingsBrightnessSliderDependents(int showBrightnessSlider) {
+        boolean enabled = showBrightnessSlider != QS_BRIGHTNESS_SLIDER_HIDDEN;
+
+        mQsBrightnessSliderPosition.setEnabled(enabled);
+        mQsShowAutoBrightness.setEnabled(enabled);
     }
 
     private void enableStatusBarBatteryDependents(int batteryIconStyle) {
