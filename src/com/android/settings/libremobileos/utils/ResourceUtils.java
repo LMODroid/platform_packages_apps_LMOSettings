@@ -17,6 +17,7 @@ package com.android.settings.libremobileos.utils;
 
 import android.content.res.Resources;
 import android.util.Log;
+import android.view.View;
 
 public class ResourceUtils {
 
@@ -40,5 +41,9 @@ public class ResourceUtils {
         } else {
             return res.getString(resId);
         }
+    }
+
+    public static boolean isRtlMode(final Resources res) {
+        return res.getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 }

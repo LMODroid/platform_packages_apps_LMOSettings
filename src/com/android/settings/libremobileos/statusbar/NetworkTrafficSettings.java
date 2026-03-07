@@ -5,10 +5,11 @@
 
 package com.android.settings.libremobileos.statusbar;
 
+import static com.android.settings.libremobileos.utils.ResourceUtils.isRtlMode;
+
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -69,7 +70,7 @@ public class NetworkTrafficSettings extends SettingsPreferenceFragment
         mNetTrafficPosition.setOnPreferenceChangeListener(this);
 
         // Adjust network traffic preferences for RTL
-        if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+        if (isRtlMode(getResources())) {
             if (disallowCenteredTraffic) {
                 mNetTrafficPosition.setEntries(R.array.network_traffic_position_entries_notch_rtl);
                 mNetTrafficPosition.setEntryValues(R.array.network_traffic_position_values_notch);
