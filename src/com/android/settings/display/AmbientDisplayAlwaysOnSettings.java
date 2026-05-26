@@ -15,6 +15,11 @@
  */
 package com.android.settings.display;
 
+import android.content.Context;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import com.android.settings.R;
@@ -27,6 +32,11 @@ public class AmbientDisplayAlwaysOnSettings extends DashboardFragment {
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.ambient_display_always_on_settings;
+    }
+
+    @Override
+    public @Nullable String getPreferenceScreenBindingKey(@NonNull Context context) {
+        return AmbientDisplayAlwaysOnScreen.KEY;
     }
 
     @Override
