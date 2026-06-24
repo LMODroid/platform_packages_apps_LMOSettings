@@ -90,7 +90,6 @@
     <string name="hardware_keys_action_last_app">Last app</string>
     <string name="hardware_keys_action_split_screen">Split screen</string>
     <string name="hardware_keys_action_kill_app">Kill foreground app</string>
-    <string name="hardware_keys_action_play_pause_music" translatable="false">Play/pause music playback</string>
     <string name="camera_sleep_on_release_title">Screen peek</string>
     <string name="camera_sleep_on_release_summary">A half press will keep the screen on only while the button is held down</string>
     <string name="camera_launch_title">Launch camera</string>
@@ -303,10 +302,6 @@
     <string name="assisted_gps_summary">Download satellite assistance data from the internet which can greatly improve the GPS startup performance</string>
 
     <!-- Lock screen pattern size -->
-    <string name="lock_pattern_size_3" translatable="false">3 \u00d7 3</string>
-    <string name="lock_pattern_size_4" translatable="false">4 \u00d7 4</string>
-    <string name="lock_pattern_size_5" translatable="false">5 \u00d7 5</string>
-    <string name="lock_pattern_size_6" translatable="false">6 \u00d7 6</string>
     <string name="lock_settings_picker_pattern_size_message">Choose a pattern size</string>
 
     <!-- Whether a visible red line will be drawn after the user has drawn the unlock pattern incorrectly -->
@@ -325,7 +320,6 @@
     <string name="show_navbar_hint_summary">Show navigation hint bar at the bottom of the screen</string>
 
     <!-- Notification channels -->
-    <string name="channel_light_settings_id" translatable="false">light_settings</string>
     <string name="channel_light_settings_name">Light settings preview</string>
 
     <!-- Notification light dialogs -->
@@ -382,8 +376,6 @@
     <string name="battery_light_low_color_title">Battery low</string>
     <string name="battery_light_medium_color_title">Charging</string>
     <string name="battery_light_full_color_title">Fully charged</string>
-    <string name="battery_light_brightness_normal" translatable="false">@string/light_brightness_normal</string>
-    <string name="battery_light_brightness_zen" translatable="false">@string/light_brightness_zen</string>
 
     <!-- Lights settings screen, notification light settings -->
     <string name="notification_light_title">Notification light</string>
@@ -396,8 +388,6 @@
     <string name="notification_light_default_value">Default</string>
     <string name="notification_light_missed_call_title">Missed call</string>
     <string name="notification_light_voicemail_title">Voicemail</string>
-    <string name="notification_light_brightness_normal" translatable="false">@string/light_brightness_normal</string>
-    <string name="notification_light_brightness_zen" translatable="false">@string/light_brightness_zen</string>
     <string name="notification_light_screen_on">Lights with screen on</string>
     <string name="notification_light_zen_mode">Lights in Do Not Disturb mode</string>
     <string name="keywords_lights_brightness_level">dim leds brightness</string>
@@ -426,11 +416,6 @@
     <!-- PIN scramble -->
     <string name="unlock_scramble_pin_layout_title">Scramble layout</string>
     <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
-
-    <!-- Private DNS -->
-    <string name="private_dns_mode_cloudflare" translatable="false">Cloudflare DNS</string>
-    <!-- Alternative: 1dot1dot1dot1.cloudflare-dns.com -->
-    <string name="private_dns_hostname_cloudflare" translatable="false">one.one.one.one</string>
 
     <!-- Proximity wake -->
     <string name="proximity_wake_title">Prevent accidental wake-up</string>
@@ -555,7 +540,6 @@
     <!-- Dashboard categories -->
     <string name="top_level_connectivity">Connectivity</string>
     <string name="top_level_personalize">Personalize</string>
-    <string name="top_level_security" translatable="false">@string/security_settings_title</string>
     <string name="top_level_system">System</string>
     <string name="top_level_info">Information</string>
 
@@ -714,7 +698,6 @@
 
     <!-- Battery Info: Technology -->
     <string name="battery_technology">Technology</string>
-    <string name="battery_technology_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
 
     <!-- Battery Info: Health -->
     <string name="battery_health">Health</string>
@@ -728,11 +711,9 @@
 
     <!-- Battery Info: Temperature -->
     <string name="battery_temperature">Temperature</string>
-    <string name="battery_temperature_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
 
     <!-- Battery Info: Voltage -->
     <string name="battery_voltage">Voltage</string>
-    <string name="battery_voltage_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
 
     <!-- Battery Info: Charge Counter -->
     <string name="battery_charge_counter_summary">%1$d mAh</string>
@@ -740,12 +721,10 @@
     <!-- Battery Info: Design Capacity -->
     <string name="battery_design_capacity">Design capacity</string>
     <string name="battery_design_capacity_summary">%1$d mAh</string>
-    <string name="battery_design_capacity_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
 
     <!-- Battery Info: Maximum Capacity -->
     <string name="battery_maximum_capacity">Maximum capacity</string>
     <string name="battery_maximum_capacity_summary">%1$d mAh (%2$d%%)</string>
-    <string name="battery_maximum_capacity_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
 
     <!-- Prevent pointer accleration -->
     <string name="prevent_pointer_acceleration_title">Pointer acceleration</string>
