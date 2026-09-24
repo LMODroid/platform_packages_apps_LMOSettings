@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020 The Calyx Institute
+ * Copyright (C) 2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +19,8 @@ package com.android.settings.backup.transport;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.FragmentActivity;
-
+import com.android.settings.R;
+import com.android.settings.SettingsActivity;
 import com.android.settings.utils.InsetUtils;
 
 /**
@@ -28,16 +29,16 @@ import com.android.settings.utils.InsetUtils;
  * Set {@code config_backup_settings_intent} to {@code settings://com.android.settings.backup.transport} to activate.
  * Don't forget to also set {@code config_backup_settings_label} or else it won't be shown.
  */
-public class TransportActivity extends FragmentActivity {
+public class TransportActivity extends SettingsActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        InsetUtils.applyWindowInsetsListener(findViewById(android.R.id.content));
+        InsetUtils.applyWindowInsetsListener(findViewById(R.id.main_content));
 
         getSupportFragmentManager().beginTransaction()
-            .replace(android.R.id.content, new TransportFragment())
+            .replace(R.id.main_content, new TransportFragment())
             .commit();
     }
 
