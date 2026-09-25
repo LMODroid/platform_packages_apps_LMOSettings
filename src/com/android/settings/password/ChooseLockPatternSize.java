@@ -46,6 +46,8 @@ public class ChooseLockPatternSize extends SettingsActivity {
     public Intent getIntent() {
         Intent modIntent = new Intent(super.getIntent());
         modIntent.putExtra(EXTRA_SHOW_FRAGMENT, ChooseLockPatternSizeFragment.class.getName());
+        modIntent.putExtra(ChooseLockSettingsHelper.EXTRA_KEY_USE_EXPRESSIVE_STYLE,
+                ThemeHelper.shouldApplyGlifExpressiveStyle(getApplicationContext()));
         return modIntent;
     }
 
@@ -56,14 +58,12 @@ public class ChooseLockPatternSize extends SettingsActivity {
     }
 
     @Override
-    protected boolean isToolbarEnabled() {
-        return false;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(SetupWizardUtils.getTheme(this, getIntent()));
         ThemeHelper.trySetDynamicColor(this);
+        if (ThemeHelper.shouldApplyGlifExpressiveStyle(getApplicationContext())) {
+            ThemeHelper.trySetSuwTheme(this);
+        }
         super.onCreate(savedInstanceState);
         findViewById(R.id.content_parent).setFitsSystemWindows(false);
     }
@@ -76,6 +76,7 @@ public class ChooseLockPatternSize extends SettingsActivity {
                 throw new SecurityException("Fragment contained in wrong activity");
             }
             addPreferencesFromResource(R.xml.security_settings_pattern_size);
+            setHeaderView(R.layout.choose_lock_generic_biometric_header);
         }
 
         @Override
@@ -108,37 +109,43 @@ public class ChooseLockPatternSize extends SettingsActivity {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            GlifPreferenceLayout layout = (GlifPreferenceLayout) view;
-            layout.setDividerItemDecoration(new SettingsDividerItemDecoration(getContext()));
-
-            layout.setIcon(getContext().getDrawable(R.drawable.ic_lock));
 
             if (getActivity() != null) {
                 getActivity().setTitle(R.string.lock_settings_picker_pattern_size_message);
             }
 
-            layout.setHeaderText(R.string.lock_settings_picker_pattern_size_message);
+            if (view instanceof GlifPreferenceLayout) {
+                GlifPreferenceLayout layout = (GlifPreferenceLayout) view;
+                layout.setDividerItemDecoration(new SettingsDividerItemDecoration(getContext()));
 
-            // Remove the padding on the start of the header text.
-            if (ThemeHelper.shouldApplyMaterialYouStyle(getContext())) {
-                final LinearLayout headerLayout = layout.findManagedViewById(
-                        com.google.android.setupdesign.R.id.sud_layout_header);
-                if (headerLayout != null) {
-                    headerLayout.setPadding(0, layout.getPaddingTop(), 0,
-                            layout.getPaddingBottom());
+                layout.setIcon(getContext().getDrawable(R.drawable.ic_lock));
+                layout.setHeaderText(R.string.lock_settings_picker_pattern_size_message);
+
+                // Remove the padding on the start of the header text.
+                if (ThemeHelper.shouldApplyGlifExpressiveStyle(getContext())) {
+                    final LinearLayout headerLayout = layout.findManagedViewById(
+                            com.google.android.setupdesign.R.id.sud_layout_header);
+                    if (headerLayout != null) {
+                        headerLayout.setPadding(0, layout.getPaddingTop(), 0,
+                                layout.getPaddingBottom());
+                    }
                 }
-            }
 
-            // Use the dividers in SetupWizardRecyclerLayout. Suppress the dividers in
-            // PreferenceFragment.
-            setDivider(null);
+                // Use the dividers in SetupWizardRecyclerLayout. Suppress the dividers in
+                // PreferenceFragment.
+                setDivider(null);
+            }
         }
 
         @Override
         public RecyclerView onCreateRecyclerView(LayoutInflater inflater, ViewGroup parent,
                 Bundle savedInstanceState) {
-            GlifPreferenceLayout layout = (GlifPreferenceLayout) parent;
-            return layout.onCreateRecyclerView(inflater, parent, savedInstanceState);
+            if (parent instanceof GlifPreferenceLayout layout) {
+                // Usually for setup wizard
+                return layout.onCreateRecyclerView(inflater, parent, savedInstanceState);
+            } else {
+                return super.onCreateRecyclerView(inflater, parent, savedInstanceState);
+            }
         }
 
         @Override
