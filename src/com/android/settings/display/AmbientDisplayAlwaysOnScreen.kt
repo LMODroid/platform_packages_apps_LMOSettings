@@ -34,6 +34,7 @@ import com.android.settingslib.metadata.PreferenceSummaryProvider
 import com.android.settingslib.metadata.ProvidePreferenceScreen
 import com.android.settingslib.metadata.preferenceHierarchy
 import com.android.settingslib.preference.PreferenceScreenCreator
+import kotlinx.coroutines.CoroutineScope
 
 @ProvidePreferenceScreen(AmbientDisplayAlwaysOnScreen.KEY)
 class AmbientDisplayAlwaysOnScreen :
@@ -78,8 +79,8 @@ class AmbientDisplayAlwaysOnScreen :
 
     override fun fragmentClass() = AmbientDisplayAlwaysOnSettings::class.java
 
-    override fun getPreferenceHierarchy(context: Context) =
-        preferenceHierarchy(context, this) {
+    override fun getPreferenceHierarchy(context: Context, coroutineScope: CoroutineScope) =
+        preferenceHierarchy(context) {
             // Nothing here
         }
 

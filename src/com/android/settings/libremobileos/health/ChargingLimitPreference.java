@@ -55,7 +55,8 @@ public class ChargingLimitPreference extends SliderPreference
         mChargingLimitValue = (TextView) holder.findViewById(android.R.id.summary);
         mChargingLimitValue.setVisibility(View.VISIBLE);
 
-        mSlider = (Slider) holder.findViewById(R.id.slider);
+        mSlider = (Slider) holder.findViewById(
+                com.android.settingslib.widget.preference.slider.R.id.slider);
         mSlider.addOnSliderTouchListener(this);
         mSlider.setLabelBehavior(LabelFormatter.LABEL_FLOATING);
         mSlider.setStepSize(1);
