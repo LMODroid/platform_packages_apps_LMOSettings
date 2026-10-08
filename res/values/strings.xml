@@ -218,10 +218,6 @@
          Only for devices that support checking proximity prior to allowing fingerprint unlock. -->
     <string name="security_settings_require_screen_on_to_auth_with_proximity_description">Touch the sensor to unlock, even when the screen is off. Proximity sensor prevents accidental unlocking.</string>
 
-    <!-- Game Space -->
-    <string name="game_space_title">Game Space</string>
-    <string name="game_space_summary">Enhance your gaming experience</string>
-
     <!-- Heads-up -->
     <string name="heads_up_notifications_enabled_title">Heads-up</string>
     <string name="heads_up_notifications_enabled_summary">Display priority notifications in a small floating window</string>
