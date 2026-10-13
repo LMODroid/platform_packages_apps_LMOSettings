@@ -719,4 +719,8 @@
     <string name="factory_reset_battery_low_dialog_button_text">Got it</string>
     <string name="doze_always_on_timeout_switch_title">Timeout after 15s</string>
     <string name="doze_always_on_timeout_switch_summary">Turns off Always-On Display after 15 seconds of inactivity to save power</string>
+
+    <string name="face_enrolling_close_to_continue">Fold phone during setup</string>
+    <string name="face_enrolling_close_to_continue_description">The phone must be folded to set up or use Face Unlock</string>
+    <string name="face_enrolling_do_it_later">Do it later</string>
 </resources>
