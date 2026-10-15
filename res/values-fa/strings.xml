@@ -28,40 +28,13 @@
     <string name="long_screen_settings_title">برنامه‌های تمام صفحه</string>
     <string name="long_screen_settings_summary">اجبار برنامه‌های قدیمی به استفاده از نسبت تصویر تمام صفحه</string>
     <string name="long_screen_settings_no_apps">بدون برنامه‌ها</string>
-
-    <!-- App lock -->
-    <string name="app_lock_title">قفل برنامه</string>
-    <plurals name="app_lock_summary">
-        <item quantity="one"><xliff:g example="1" id="Number of applications">%1$d</xliff:g> برنامه محافظت شده است</item>
-        <item quantity="other"><xliff:g example="10" id="Number of applications">%1$d</xliff:g> برنامه محافظت شده است</item>
-    </plurals>
-    <string name="app_lock_authentication_dialog_title">باز کردن قفل</string>
     <string name="enable_debugging">فعال کردن اشکال زدایی</string>
     <string name="disable_debugging">غیرفعال کردن اشکال زدایی</string>
-    <string name="app_lock_packages_title">برنامه‌های محافظت شده</string>
-    <string name="app_lock_packages_summary">برنامه‌هایی را که می‌خواهید با اطلاعات بیومتریک یا مدارک دستگاه محافظت کنید، انتخاب کنید</string>
-    <string name="app_lock_timeout_title">مهلت قفل خودکار</string>
-    <string name="app_lock_timeout_summary">مدت زمان پس از آن که یک برنامه باز در پس‌زمینه بوده قفل شود</string>
-    <string name="app_lock_notifications_title">حذف اطلاعیه‌ها</string>
-    <string name="app_lock_notifications_summary">
-وقتی برنامه‌های انتخابی قفل می‌شوند، محتوای اعلان‌ها پنهان و جمع می‌شود.
-     اعلان‌های هدزآپ به طور خودکار غیرفعال می‌شوند.
-    </string>
-    <string name="app_lock_notifications_disabled_summary">ابتدا یک برنامه را محافظت کنید</string>
-    <string name="app_lock_biometrics_allowed_title">فعال کردن بیومتریک برای باز کردن قفل</string>
-    <string name="app_lock_footer_text">بعد از مدت زمان تنظیم شده، حباب‌ها به طور خودکار بسته می‌شوند</string>
     <string name="enable_protection">فعال کردن حفاظت</string>
     <string name="hide_from_launcher_title">مخفی کردن از صفحه نمایش اصلی</string>
     <string name="hide_from_launcher_summary">
     از نمایش این برنامه در لانچر جلوگیری کنید. برای اعمال تغییرات به راه اندازی مجدد نیاز دارد.
     </string>
-    <string name="app_lock_timeout_5sec">5 ثانیه</string>
-    <string name="app_lock_timeout_10sec">10 ثانیه</string>
-    <string name="app_lock_timeout_30sec">30 ثانیه</string>
-    <string name="app_lock_timeout_1min">1 دقیقه</string>
-    <string name="app_lock_timeout_5min">5 دقیقه</string>
-    <string name="app_lock_timeout_10min">10 دقیقه</string>
-    <string name="app_lock_timeout_30min">30 دقیقه</string>
 
     <!-- Backup Transport selection settings menu and activity title -->
     <string name="backup_transport_setting_label">تغییر تامین کننده پشتیبانی</string>
