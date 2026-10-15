@@ -604,11 +604,6 @@
     <string name="custom_timeout_summary_30mins">30 دقیقه</string>
     <string name="custom_timeout_summary_1hour">1 ساعت</string>
 
-    <!-- Sound: Title for the option defining the phone ringtone for slot1 on Muilti SIM device. [CHAR LIMIT=50] -->
-    <string name="ringtone1_title">آهنگ زنگ تلفن - سیم کارت ۱</string>
-    <!-- Sound: Title for the option defining the phone ringtone for slot2 on Muilti SIM device. [CHAR LIMIT=50] -->
-    <string name="ringtone2_title">آهنگ زنگ تلفن - سیم کارت ۲</string>
-
     <!-- QS Settings -->
     <string name="qs_settings_title">تنظیمات سریع</string>
 
