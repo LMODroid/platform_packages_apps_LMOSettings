@@ -735,9 +735,6 @@
     <string name="factory_reset_battery_low_dialog_title">باتری کم</string>
     <string name="factory_reset_battery_low_dialog_message">برای انجام بازنشانی کارخانه، سطح باتری باید حداقل ۱۵٪ باشد.\n\nلطفاً شارژر خود را وصل کنید تا ادامه دهید.</string>
     <string name="factory_reset_battery_low_dialog_button_text">متوجه شدم</string>
-
-    <!-- Doze always-on display -->
-    <string name="doze_always_on_main_switch_title">صفحه همیشه روشن</string>
     <string name="doze_always_on_timeout_switch_title">وقفه پس از ۱۵ ثانیه</string>
     <string name="doze_always_on_timeout_switch_summary">صفحه همیشه روشن را پس از ۱۵ ثانیه عدم فعالیت برای صرفه‌جویی در مصرف انرژی خاموش می‌کند</string>
 </resources>
