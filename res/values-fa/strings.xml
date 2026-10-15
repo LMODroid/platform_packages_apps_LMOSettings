@@ -715,13 +715,6 @@
     <string name="battery_maximum_capacity">حداکثر ظرفیت</string>
     <string name="battery_maximum_capacity_summary">%1$d mAh (%2$d%%)</string>
 
-    <!-- Prevent pointer accleration -->
-    <string name="prevent_pointer_acceleration_title">شتاب‌دهنده پوینتر</string>
-    <string name="prevent_pointer_acceleration_full">کامل (پوینتر + چرخ)</string>
-    <string name="prevent_pointer_acceleration_wheel">فقط چرخ</string>
-    <string name="prevent_pointer_acceleration_pointer">فقط پوینتر</string>
-    <string name="prevent_pointer_acceleration_none">هیچکدام</string>
-
     <!-- Doze -->
     <string name="doze_gesture_ambient_title">نمایش محیطی</string>
     <string name="doze_gesture_ambient_summary">نمایش صفحه محیطی به جای بیدار شدن کامل صفحه</string>
