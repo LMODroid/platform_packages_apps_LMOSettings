@@ -60,4 +60,6 @@
 
     <!-- Battery Info: Maximum Capacity -->
     <string name="battery_maximum_capacity_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
+
+    <string name="berry_black_theme_purpose" translatable="false">Whether the pure dark theme is enabled</string>
 </resources>
