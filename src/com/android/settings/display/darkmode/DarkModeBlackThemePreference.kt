@@ -22,6 +22,7 @@ import com.android.settings.R
 import com.android.settingslib.metadata.BooleanValuePreference
 import com.android.settingslib.metadata.PreferenceAvailabilityProvider
 import com.android.settingslib.metadata.PreferenceMetadata
+import com.android.settingslib.metadata.preferencesapi.preconditions.PreconditionStability
 import com.android.settingslib.preference.PreferenceBinding
 import com.libremobileos.providers.LMOSettings
 
@@ -48,6 +49,11 @@ class DarkModeBlackThemePreference(context: Context, private val darkModeStorage
 
     override fun createWidget(context: Context) =
         SwitchPreferenceCompat(context).apply { isPersistent = false }
+
+    override val availabilityDescription: String =
+        "The black theme overlay must be installed."
+
+    override fun getAvailabilityStability() = PreconditionStability.STABLE_UNTIL_APK_UPDATE
 
     override fun isAvailable(context: Context): Boolean {
         return try {

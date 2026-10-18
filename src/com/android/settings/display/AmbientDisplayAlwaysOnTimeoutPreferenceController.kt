@@ -12,7 +12,6 @@ import android.provider.Settings
 import androidx.preference.Preference
 import com.android.settings.R
 import com.android.settings.core.TogglePreferenceController
-import com.android.systemui.shared.Flags.ambientAod
 import com.libremobileos.providers.LMOSettings
 
 /**
@@ -29,7 +28,7 @@ class AmbientDisplayAlwaysOnTimeoutPreferenceController(
 
     override fun getAvailabilityStatus(): Int =
         AVAILABLE.takeIf {
-            ambientAod() && AmbientDisplaySettingsController.isExternallyManaged(mContext) &&
+            AmbientDisplaySettingsController.isExternallyManaged(mContext) &&
                 config.alwaysOnAvailableForUser(UserHandle.myUserId())
         } ?: UNSUPPORTED_ON_DEVICE
 
