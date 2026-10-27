@@ -212,6 +212,10 @@ public class ButtonSettings extends SettingsPreferenceFragment
                 com.android.internal.R.integer.config_doubleTapOnHomeBehavior));
         Action defaultAppSwitchLongPressAction = Action.fromIntSafe(res.getInteger(
                 com.android.internal.R.integer.config_longPressOnAppSwitchBehavior));
+        Action defaultAssistPressAction = Action.fromIntSafe(res.getInteger(
+                com.android.internal.R.integer.config_pressOnAssistBehavior));
+        Action defaultAssistLongPressAction = Action.fromIntSafe(res.getInteger(
+                com.android.internal.R.integer.config_longPressOnAssistBehavior));
         Action backLongPressAction = Action.fromSettings(resolver,
                 LMOSettings.System.KEY_BACK_LONG_PRESS_ACTION,
                 defaultBackLongPressAction);
@@ -334,11 +338,12 @@ public class ButtonSettings extends SettingsPreferenceFragment
             }
 
             Action pressAction = Action.fromSettings(resolver,
-                    LMOSettings.System.KEY_ASSIST_ACTION, Action.SEARCH);
+                    LMOSettings.System.KEY_ASSIST_ACTION, defaultAssistPressAction);
             mAssistPressAction = initList(KEY_ASSIST_PRESS, pressAction);
 
             Action longPressAction = Action.fromSettings(resolver,
-                    LMOSettings.System.KEY_ASSIST_LONG_PRESS_ACTION, Action.VOICE_SEARCH);
+                    LMOSettings.System.KEY_ASSIST_LONG_PRESS_ACTION,
+                    defaultAssistLongPressAction);
             mAssistLongPressAction = initList(KEY_ASSIST_LONG_PRESS, longPressAction);
 
         }
