@@ -16,6 +16,10 @@
 package com.android.settings.display;
 
 import android.content.Context;
+import android.database.ContentObserver;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,10 +28,19 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
+import com.libremobileos.support.preferences.SecureSettingMainSwitchPreference;
 
 public class AmbientDisplayAlwaysOnSettings extends DashboardFragment {
 
     private static final String TAG = "AmbientDisplayAlwaysOnSettings";
+
+    private final ContentObserver mAlwaysOnObserver = new ContentObserver(
+            new Handler(Looper.getMainLooper())) {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateAlwaysOnSwitch();
+        }
+    };
 
     @Override
     protected int getPreferenceScreenResId() {
@@ -47,6 +60,30 @@ public class AmbientDisplayAlwaysOnSettings extends DashboardFragment {
     @Override
     protected String getLogTag() {
         return TAG;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getContext().getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.DOZE_ALWAYS_ON),
+                false, mAlwaysOnObserver);
+        updateAlwaysOnSwitch();
+    }
+
+    @Override
+    public void onStop() {
+        getContext().getContentResolver().unregisterContentObserver(mAlwaysOnObserver);
+        super.onStop();
+    }
+
+    private void updateAlwaysOnSwitch() {
+        final SecureSettingMainSwitchPreference preference =
+                findPreference(Settings.Secure.DOZE_ALWAYS_ON);
+        if (preference != null) {
+            preference.setChecked(Settings.Secure.getInt(getContext().getContentResolver(),
+                    Settings.Secure.DOZE_ALWAYS_ON, 0) != 0);
+        }
     }
 
 }
