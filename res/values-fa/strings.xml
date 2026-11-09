@@ -364,6 +364,7 @@
     <!-- Charging control settings -->
     <string name="charging_control_title">کنترل شارژ</string>
     <string name="charging_control_enable_title">فعال کردن کنترل شارژ</string>
+    <string name="charging_control_cancelled_once_summary">کنترل شارژ برای جلسه فعلی غیرفعال است</string>
     <string name="charging_control_mode_title">حالت شارژ</string>
     <string name="charging_control_mode_auto_title">زمان‌بندی خودکار</string>
     <string name="charging_control_mode_auto_summary">تعیین خودکار زمان شروع شارژ بر اساس زنگ‌های تنظیم‌شده</string>

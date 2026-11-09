@@ -7,7 +7,11 @@ package com.android.settings.libremobileos.health;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,9 +34,9 @@ import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.libremobileos.preference.CustomDialogPreference;
 
 import com.libremobileos.health.HealthInterface;
+import com.libremobileos.providers.LMOSettings;
 import com.libremobileos.support.preferences.SystemSettingListPreference;
 import com.libremobileos.support.preferences.SystemSettingMainSwitchPreference;
-import android.provider.Settings;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
@@ -59,6 +63,14 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
     private ChargingLimitPreference mChargingControlLimitPref;
 
     private HealthInterface mHealthInterface;
+
+    private final ContentObserver mStateObserver = new ContentObserver(
+            new Handler(Looper.getMainLooper())) {
+        @Override
+        public void onChange(boolean selfChange) {
+            refreshValues();
+        }
+    };
 
     private static final int MENU_RESET = Menu.FIRST;
 
@@ -105,7 +117,24 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
     @Override
     public void onResume() {
         super.onResume();
-        refreshUi();
+        refreshValues();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getContext().getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(LMOSettings.System.CHARGING_CONTROL_ENABLED),
+                false, mStateObserver);
+        getContext().getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(LMOSettings.System.CHARGING_CONTROL_CANCELLED_ONCE),
+                false, mStateObserver);
+    }
+
+    @Override
+    public void onStop() {
+        getContext().getContentResolver().unregisterContentObserver(mStateObserver);
+        super.onStop();
     }
 
     @Override
@@ -133,8 +162,13 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
     }
 
     private void refreshValues() {
+        final boolean isCancelledOnce = Settings.System.getInt(
+                getContext().getContentResolver(),
+                LMOSettings.System.CHARGING_CONTROL_CANCELLED_ONCE, 0) != 0;
         if (mChargingControlEnabledPref != null) {
             mChargingControlEnabledPref.setChecked(mHealthInterface.getEnabled());
+            mChargingControlEnabledPref.setSummary(isCancelledOnce
+                    ? getText(R.string.charging_control_cancelled_once_summary) : null);
         }
 
         if (mChargingControlModePref != null) {
@@ -156,6 +190,23 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
         if (mChargingControlLimitPref != null) {
             mChargingControlLimitPref.setValue(
                     mChargingControlLimitPref.getSetting());
+        }
+
+        setChargingControlPreferencesEnabled(!isCancelledOnce);
+    }
+
+    private void setChargingControlPreferencesEnabled(boolean enabled) {
+        if (mChargingControlModePref != null) {
+            mChargingControlModePref.setEnabled(enabled);
+        }
+        if (mChargingControlStartTimePref != null) {
+            mChargingControlStartTimePref.setEnabled(enabled);
+        }
+        if (mChargingControlTargetTimePref != null) {
+            mChargingControlTargetTimePref.setEnabled(enabled);
+        }
+        if (mChargingControlLimitPref != null) {
+            mChargingControlLimitPref.setEnabled(enabled);
         }
     }
 
