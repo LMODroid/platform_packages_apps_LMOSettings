@@ -105,6 +105,8 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.getUriFor(LMOSettings.System.DISPLAY_TEMPERATURE_NIGHT);
     private final Uri DISPLAY_TEMPERATURE_MODE_URI =
             Settings.System.getUriFor(LMOSettings.System.DISPLAY_TEMPERATURE_MODE);
+    private final Uri DISPLAY_READING_MODE_URI =
+            Settings.System.getUriFor(LMOSettings.System.DISPLAY_READING_MODE);
 
     private ListPreference mLiveDisplay;
 
@@ -296,7 +298,8 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
         updateColorProfileSummary(null);
         updateReadingModeStatus();
         SettingsHelper.get(getActivity()).startWatching(this, DISPLAY_TEMPERATURE_DAY_URI,
-                DISPLAY_TEMPERATURE_MODE_URI, DISPLAY_TEMPERATURE_NIGHT_URI);
+                DISPLAY_TEMPERATURE_MODE_URI, DISPLAY_TEMPERATURE_NIGHT_URI,
+                DISPLAY_READING_MODE_URI);
     }
 
     @Override
@@ -535,8 +538,8 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
 
     private void updateReadingModeStatus() {
         if (mReadingMode != null) {
-            mReadingMode.setChecked(
-                    mHardware.get(LineageHardwareManager.FEATURE_READING_ENHANCEMENT));
+            mReadingMode.setChecked(Settings.System.getInt(getContentResolver(),
+                    LMOSettings.System.DISPLAY_READING_MODE, 0) != 0);
         }
     }
 
