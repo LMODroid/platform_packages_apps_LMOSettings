@@ -24,7 +24,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 
 import com.android.internal.logging.nano.MetricsProto
-import androidx.lifecycle.lifecycleScope
 
 import com.android.settings.R
 import com.android.settings.dashboard.DashboardFragment
@@ -74,7 +73,7 @@ class AppLockSettingsFragment : DashboardFragment(),
     override protected fun createPreferenceControllers(
         context: Context
     ) : List<AbstractPreferenceController> = listOf(
-        AppLockBiometricPreferenceController(context, lifecycleScope)
+        AppLockBiometricPreferenceController(context)
     )
 
     companion object {

@@ -23,17 +23,13 @@ import androidx.preference.PreferenceScreen
 
 import com.libremobileos.applock.AppLockManager
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val KEY = "redact_notifications"
 
 class AppLockNotificationRedactionPC(
     context: Context,
-    private val packageName: String,
-    private val coroutineScope: CoroutineScope
+    private val packageName: String
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy {
@@ -51,7 +47,7 @@ class AppLockNotificationRedactionPC(
     override fun setChecked(checked: Boolean): Boolean {
         if (shouldRedactNotification == checked) return false
         shouldRedactNotification = checked
-        coroutineScope.launch(Dispatchers.Default) {
+        appLockWriteScope.launch {
             appLockManager.setShouldRedactNotification(packageName, checked)
         }
         return true

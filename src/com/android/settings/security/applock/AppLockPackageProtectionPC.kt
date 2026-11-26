@@ -18,23 +18,18 @@ package com.android.settings.security.applock
 
 import android.content.Context
 
-import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceScreen
 
 import com.libremobileos.applock.AppLockManager
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val KEY = "main_switch"
 
 class AppLockPackageProtectionPC(
     context: Context,
-    private val packageName: String,
-    private val coroutineScope: CoroutineScope
+    private val packageName: String
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy { AppLockManager.getInstance(context) }
@@ -49,8 +44,8 @@ class AppLockPackageProtectionPC(
     override fun setChecked(checked: Boolean): Boolean {
         if (isProtected == checked) return false
         isProtected = checked
-        coroutineScope.launch(Dispatchers.Default) {
-            if (isProtected) {
+        appLockWriteScope.launch {
+            if (checked) {
                 appLockManager.addPackage(packageName)
             } else {
                 appLockManager.removePackage(packageName)

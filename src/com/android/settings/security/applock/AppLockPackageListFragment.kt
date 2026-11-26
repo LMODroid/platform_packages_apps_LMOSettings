@@ -90,6 +90,7 @@ class AppLockPackageListFragment : DashboardFragment() {
             preferenceScreen?.forEach {
                 if (it is PrimarySwitchPreference) {
                     it.isChecked = selectedPackages.contains(it.key)
+                    it.switch?.jumpDrawablesToCurrentState()
                 }
             }
         }
@@ -113,8 +114,9 @@ class AppLockPackageListFragment : DashboardFragment() {
             setIconSize(ICON_SIZE_SMALL)
             isChecked = isProtected
             setOnPreferenceChangeListener { _, newValue ->
-                lifecycleScope.launch(Dispatchers.IO) {
-                    if (newValue as Boolean) {
+                val protect = newValue as Boolean
+                appLockWriteScope.launch {
+                    if (protect) {
                         appLockManager.addPackage(packageInfo.packageName)
                     } else {
                         appLockManager.removePackage(packageInfo.packageName)

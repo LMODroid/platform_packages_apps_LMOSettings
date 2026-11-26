@@ -26,6 +26,14 @@ import com.android.settings.R
 import com.android.settings.core.TogglePreferenceController
 import com.android.settingslib.widget.MainSwitchPreference
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+
+internal val appLockWriteScope = CoroutineScope(
+    SupervisorJob() + Dispatchers.IO.limitedParallelism(1)
+)
+
 abstract class AppLockTogglePreferenceController(
     context: Context,
     key: String,

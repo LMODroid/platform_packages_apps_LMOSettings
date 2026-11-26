@@ -22,8 +22,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 
-import androidx.lifecycle.lifecycleScope
-
 import com.android.internal.logging.nano.MetricsProto
 
 import com.android.settings.R
@@ -67,9 +65,9 @@ class AppLockPackageConfigFragment : DashboardFragment() {
     override protected fun createPreferenceControllers(
         context: Context
     ) : List<AbstractPreferenceController> = listOf(
-        AppLockPackageProtectionPC(context, packageInfo.packageName, lifecycleScope),
-        AppLockNotificationRedactionPC(context, packageInfo.packageName, lifecycleScope),
-        AppLockHideAppPC(context, packageInfo.packageName, lifecycleScope)
+        AppLockPackageProtectionPC(context, packageInfo.packageName),
+        AppLockNotificationRedactionPC(context, packageInfo.packageName),
+        AppLockHideAppPC(context, packageInfo.packageName)
     )
 
     override fun getMetricsCategory(): Int = MetricsProto.MetricsEvent.LMODROID

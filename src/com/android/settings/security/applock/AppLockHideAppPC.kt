@@ -23,17 +23,13 @@ import androidx.preference.PreferenceScreen
 
 import com.libremobileos.applock.AppLockManager
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val KEY = "hide_from_launcher"
 
 class AppLockHideAppPC(
     context: Context,
-    private val packageName: String,
-    private val coroutineScope: CoroutineScope
+    private val packageName: String
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy { AppLockManager.getInstance(context) }
@@ -48,8 +44,8 @@ class AppLockHideAppPC(
     override fun setChecked(checked: Boolean): Boolean {
         if (hideFromLauncher == checked) return false
         hideFromLauncher = checked
-        coroutineScope.launch(Dispatchers.Default) {
-            appLockManager.setPackageHidden(packageName, hideFromLauncher)
+        appLockWriteScope.launch {
+            appLockManager.setPackageHidden(packageName, checked)
         }
         return true
     }

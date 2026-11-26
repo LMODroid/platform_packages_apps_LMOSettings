@@ -21,39 +21,20 @@ import android.content.Context
 import android.hardware.biometrics.BiometricManager
 import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_WEAK
 
-import androidx.preference.Preference
-import androidx.preference.PreferenceScreen
-
 import com.libremobileos.applock.AppLockManager
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val KEY = "app_lock_biometrics_allowed"
 
 class AppLockBiometricPreferenceController(
-    context: Context,
-    private val coroutineScope: CoroutineScope
+    context: Context
 ) : AppLockTogglePreferenceController(context, KEY) {
 
     private val appLockManager by lazy { AppLockManager.getInstance(context) }
     private val biometricManager = context.getSystemService(BiometricManager::class.java)
 
-    private var preference: Preference? = null
-    private var isBiometricsAllowed = false
-
-    init {
-        coroutineScope.launch {
-            isBiometricsAllowed = withContext(Dispatchers.Default) {
-                appLockManager.isBiometricsAllowed()
-            }
-            preference?.let {
-                updateState(it)
-            }
-        }
-    }
+    private var isBiometricsAllowed: Boolean = appLockManager.isBiometricsAllowed()
 
     override fun getAvailabilityStatus(): Int {
         val result = biometricManager?.canAuthenticate(BIOMETRIC_WEAK)
@@ -65,14 +46,9 @@ class AppLockBiometricPreferenceController(
     override fun setChecked(checked: Boolean): Boolean {
         if (isBiometricsAllowed == checked) return false
         isBiometricsAllowed = checked
-        coroutineScope.launch(Dispatchers.Default) {
-            appLockManager.setBiometricsAllowed(isBiometricsAllowed)
+        appLockWriteScope.launch {
+            appLockManager.setBiometricsAllowed(checked)
         }
         return true
-    }
-
-    override fun displayPreference(screen: PreferenceScreen) {
-        super.displayPreference(screen)
-        preference = screen.findPreference(preferenceKey)
     }
 }
